@@ -1,10 +1,14 @@
 import React from "react";
+import Showcase from "../../Components/Layouts/Showcase/Showcase";
+import ProductList from "../../Components/Layouts/ProductList/ProductList";
 
 const HomePage = () => {
   return (
-    <div>
-      <h1>Home</h1>
-    </div>
+    <section>
+      {/* <h1>Home</h1> */}
+      <Showcase />
+      <ProductList />
+    </section>
   );
 };
 
