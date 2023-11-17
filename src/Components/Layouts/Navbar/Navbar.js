@@ -1,9 +1,18 @@
 import React from "react";
 import "./Navbar.css";
 
-const Navbar = () => {
+const Navbar = ({ darkTheme }) => {
   return (
-    <section className="navbar-container">
+    <section
+      // className={
+      //   darkTheme ? "background-dark" + " navbar-container"
+      //     : "background-transparent" + " navbar-container"
+      // }
+
+      className={`navbar-container ${
+        darkTheme ? "background-dark relative" : "background-transparent"
+      }`}
+    >
       <div className="container flex justify-between align-center">
         <a href="#" className="logo">
           Book<span className="text-primary">World</span>
