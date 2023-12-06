@@ -14,7 +14,7 @@ const Showcase = () => {
           Best <span className="text-primary">Books</span> Available
         </h1>
         <p>Buy quality books at cheap price</p>
-        <SearchInputForm />
+        <SearchInputForm darkTheme={true} />
       </div>
     </section>
   );
