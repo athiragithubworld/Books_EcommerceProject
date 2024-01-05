@@ -1,5 +1,6 @@
 import React from "react";
 import "./ProductList.css";
+import { BookData } from "../../../util/BookData";
 
 import ProductListingCards from "../../Cards/ProductListingCards/ProductListingCards";
 const ProductList = () => {
@@ -11,10 +12,10 @@ const ProductList = () => {
           might like
         </h2>
         <div className="listing-container">
-          <ProductListingCards />
-          <ProductListingCards />
-          <ProductListingCards />
-          <ProductListingCards />
+          {BookData.slice(1, 5).map((book) => (
+            <ProductListingCards key={book.id} bookData={book} />
+          ))}
+
           {/* <div className="product-listing-card">
             <div className="product-listing-img-container">
               <img

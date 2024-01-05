@@ -6,7 +6,8 @@
 .listing-container {
   padding-top: 4rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  gap: 3rem;
 }
 
 /* .product-listing-card {
