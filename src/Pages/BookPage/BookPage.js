@@ -14,7 +14,7 @@ const BookPage = () => {
         <h2>
           Find the <span className="text-primary">Books</span> that you want
         </h2>
-        <SearchInputForm />
+        <SearchInputForm darkTheme={false} />
       </div>
       <ProductListingAll />
       <Footer />
