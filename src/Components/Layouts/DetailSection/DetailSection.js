@@ -1,12 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./DetailSection.css";
 import BookDetailingImg from "../../../assets/books-images/atomic-habits.jpg";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { BookData } from "../../../util/BookData";
+import app from "../../../Firebase/Firebase";
+import { CartContext, UserContext } from "../../../App";
 
 const DetailSection = () => {
   const { id } = useParams();
   const [bookData, setBookData] = useState({});
+  const user = useContext(UserContext);
+  const { cartItems, setcartItems } = useContext(CartContext);
+
+  const navigate = useNavigate();
+
   useEffect(() => {
     let newData = BookData.filter((book) => book.id === parseInt(id));
     setBookData(newData[0]);
@@ -14,6 +21,16 @@ const DetailSection = () => {
     // console.log(newData);
     // console.log(newData[0]);
   }, []);
+
+  const handleCart = () => {
+    if (user) {
+      setcartItems([...cartItems, bookData]);
+      alert(`The book ${bookData.book_name} is added to the cart`);
+    } else {
+      navigate("/login");
+      alert("Please login or Sign Up");
+    }
+  };
 
   return (
     <section className="detail-section-container">
@@ -35,7 +52,7 @@ const DetailSection = () => {
             </p>
             <h3>&#8377;{bookData.price}</h3>
 
-            <a href="#" className="button-primary">
+            <a onClick={handleCart} className="button-primary">
               Add To Cart
             </a>
           </div>
