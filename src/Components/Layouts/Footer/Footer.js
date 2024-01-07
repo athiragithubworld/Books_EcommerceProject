@@ -1,12 +1,32 @@
-import React from "react";
+import React, { useRef } from "react";
 import "./Footer.css";
+import emailjs from "@emailjs/browser";
 
 const Footer = () => {
+  const form = useRef();
+  const serviceId = "service_bookstore";
+  const templateId = "template_bookstore";
+  const publicKey = "zEveGFEETG2u5y8aT";
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+    emailjs
+      .sendForm(serviceId, templateId, form.current, publicKey)
+      .then((response) => {
+        console.log(response.text);
+      })
+      .catch((err) => {
+        console.log(err.text);
+      });
+
+    event.target.reset();
+  };
+
   return (
     <section className="footer-container">
       <div className="container">
         <h2>If you have any quries feel free to ask here</h2>
-        <form className="footer-form">
+        <form ref={form} onSubmit={submitHandler} className="footer-form">
           <div className="form-group">
             <label htmlFor="name" className="form-label">
               Name:
@@ -14,6 +34,7 @@ const Footer = () => {
             <input
               type="text"
               id="name"
+              name="user_name"
               className="form-input"
               placeholder="Enter your Name"
             />
@@ -25,6 +46,7 @@ const Footer = () => {
             <input
               type="email"
               id="email"
+              name="user_email"
               className="form-input"
               placeholder="Enter your Email"
             />
@@ -37,13 +59,12 @@ const Footer = () => {
             <textarea
               className="form-input"
               id="query"
+              name="message"
               placeholder="Type your Query"
             ></textarea>
           </div>
           <div className="form-group">
-            <a href="#" className="form-submit">
-              Submit
-            </a>
+            <input type="submit" value="Submit" className="form-submit" />
           </div>
         </form>
         <p>&copy; 2023 Bookworld. All Rights Reserved</p>
